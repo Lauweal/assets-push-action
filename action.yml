@@ -1,11 +1,14 @@
-name: 'Your name here'
+name: 'assets-push-action'
 description: 'Provide a description here'
 author: 'Your name or organization here'
 inputs:
-  milliseconds: # change this
+  file:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: '同步的配置文件'
+  ignore:
+    description: 'ignore'
+    required: false
+    default: '[]'
 runs:
   using: 'node16'
   main: 'dist/index.js'
