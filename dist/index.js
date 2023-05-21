@@ -144,7 +144,7 @@ function run() {
         const file = JSON.parse(core.getInput('file'));
         const { target, source, clients } = (0, create_options_1.createOptions)(path_1.default.join(process.cwd(), file));
         const client = (yield Promise.all(clients.map((opt) => __awaiter(this, void 0, void 0, function* () { return (0, setup_clients_1.setupClient)(opt); }))).then(cl => cl.filter(c => !!c)));
-        const status = yield Promise.all(client.map((cli) => __awaiter(this, void 0, void 0, function* () { return (0, upload_file_1.uploadFile)(cli, source, target, ignore); })));
+        const status = yield Promise.all(client.map((cli) => __awaiter(this, void 0, void 0, function* () { return (0, upload_file_1.uploadFile)(cli, path_1.default.join(process.cwd(), source), target, ignore); })));
         if (!status.every(s => !!s)) {
             core.error('Upload Error');
             core.setOutput('message', 'Upload Error');

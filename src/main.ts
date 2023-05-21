@@ -17,7 +17,9 @@ async function run(): Promise<void> {
     clients.map(async opt => setupClient(opt))
   ).then(cl => cl.filter(c => !!c))) as any
   const status = await Promise.all(
-    client.map(async cli => uploadFile(cli, source, target, ignore))
+    client.map(async cli =>
+      uploadFile(cli, path.join(process.cwd(), source), target, ignore)
+    )
   )
   if (!status.every(s => !!s)) {
     core.error('Upload Error')
