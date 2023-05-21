@@ -1,9 +1,8 @@
-/* eslint-disable import/no-named-as-default */
 /* eslint-disable github/no-then */
-/* eslint-disable import/no-named-as-default-member */
+
 import * as core from '@actions/core'
 import Client from 'ssh2-sftp-client'
-import glob from 'glob'
+import * as glob from 'glob'
 import path from 'path'
 import fs from 'fs'
 

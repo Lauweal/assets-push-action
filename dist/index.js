@@ -227,6 +227,7 @@ exports.setupClient = setupClient;
 
 "use strict";
 
+/* eslint-disable github/no-then */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -264,16 +265,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.uploadFile = void 0;
-/* eslint-disable import/no-named-as-default */
-/* eslint-disable github/no-then */
-/* eslint-disable import/no-named-as-default-member */
 const core = __importStar(__nccwpck_require__(2186));
-const glob_1 = __importDefault(__nccwpck_require__(7106));
+const glob = __importStar(__nccwpck_require__(7106));
 const path_1 = __importDefault(__nccwpck_require__(1017));
 const fs_1 = __importDefault(__nccwpck_require__(7147));
 function uploadFile(client, local, remote, ignore = []) {
     return __awaiter(this, void 0, void 0, function* () {
-        const paths = glob_1.default.sync(path_1.default.join(local, '**/*'), { ignore: ignore || [] });
+        const paths = glob.sync(path_1.default.join(local, '**/*'), { ignore: ignore || [] });
         const files = paths.filter(f => fs_1.default.statSync(f).isFile());
         const dirs = paths.filter(f => fs_1.default.statSync(f).isDirectory());
         yield Promise.all(dirs.map((d) => __awaiter(this, void 0, void 0, function* () { return client.mkdir(d.replace(local, remote), true); })));
