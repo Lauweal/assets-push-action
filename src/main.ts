@@ -9,7 +9,7 @@ import {uploadFile} from './upload-file'
 
 async function run(): Promise<void> {
   const ignore = JSON.parse(core.getInput('ignore'))
-  const file = JSON.parse(core.getInput('file'))
+  const file = core.getInput('file')
   const {target, source, clients} = createOptions(
     path.join(process.cwd(), file)
   )
